@@ -137,7 +137,7 @@ paths:
         "500":
           description: Internal Server Error
 
-  /user/{account_id}/transactions:
+  /user/accounts/{account_id}/transactions:
     get:
       security:
         - Bearer: []
@@ -168,7 +168,7 @@ paths:
           description: The transactions have been successfully retrieved.
           schema:
             type: array
-            items: { $ref: "#/definitions/UserTransaction" }
+            items: { $ref: "#/definitions/UserTransactions" }
         "400":
           description: Invalid Fields
         "401":
@@ -178,7 +178,7 @@ paths:
         "500":
           description: Internal Server Error
 
-  /user/{account_id}/transactions/{transaction_id}:
+  /user/accounts/{account_id}/transactions/{transaction_id}:
     get:
       security:
         - Bearer: []
@@ -332,6 +332,20 @@ definitions:
     example:
       account_id: "123456"
       balance: 1000.50
+  UserTransactions:
+    type: object
+    properties:
+      transaction_id:
+        type: string
+      date:
+        type: string
+        format: date
+      amount:
+        type: number
+        format: float
+      balance:
+        type: number
+        format: float
   UserTransaction:
     type: object
     properties:
